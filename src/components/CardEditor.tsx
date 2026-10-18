@@ -94,7 +94,7 @@ export function CardEditor({ card, onClose }: CardEditorProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center" role="dialog" aria-modal="true" aria-label={isNew ? 'New card' : 'Edit card'}>
       <button type="button" aria-label="Close" onClick={onClose} className="absolute inset-0 bg-slate-950/50 backdrop-blur-sm" />
-      <div className="card-pop relative z-10 flex max-h-[92vh] w-full flex-col overflow-hidden rounded-t-2xl bg-white shadow-2xl dark:bg-slate-900 sm:max-w-lg sm:rounded-2xl">
+      <div className="card-pop relative z-10 flex max-h-[92vh] w-full flex-col overflow-hidden rounded-t-2xl bg-white shadow-glow-md dark:bg-slate-900 sm:max-w-lg sm:rounded-2xl">
         <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3 dark:border-slate-800">
           <div>
             <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">{isNew ? 'New Card' : 'Edit Card'}</h2>
@@ -205,7 +205,7 @@ export function CardEditor({ card, onClose }: CardEditorProps) {
                   type="checkbox"
                   checked={hasBlocker}
                   onChange={(e) => setHasBlocker(e.target.checked)}
-                  className="h-4 w-4 rounded border-slate-300 text-amber-600 focus:ring-amber-500 dark:border-slate-600 dark:bg-slate-800"
+                  className="h-4 w-4 rounded border-slate-300 text-attention-600 focus:ring-attention-600 dark:border-slate-600 dark:bg-slate-800"
                 />
                 Blocked
               </label>
@@ -214,7 +214,7 @@ export function CardEditor({ card, onClose }: CardEditorProps) {
                   value={blockerReason}
                   onChange={(e) => setBlockerReason(e.target.value)}
                   placeholder="Why is this blocked?"
-                  className="mt-2 h-9 w-full rounded-lg border border-amber-300 bg-amber-50 px-3 text-sm text-amber-900 placeholder:text-amber-400 focus:border-amber-500 focus:outline-none dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-200"
+                  className="mt-2 h-9 w-full rounded-lg border border-attention-400 bg-attention-50 px-3 text-sm text-attention-900 placeholder:text-attention-400 focus:border-attention-600 focus:outline-none dark:border-attention-600 dark:bg-attention-900/40 dark:text-attention-100"
                 />
               )}
             </section>

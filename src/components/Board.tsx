@@ -135,24 +135,24 @@ function Column({
 
   const headerAccent = wipInfo
     ? wipInfo.over
-      ? 'border-t-red-500 bg-gradient-to-b from-red-50 to-transparent dark:from-red-950/40'
+      ? 'border-t-attention-600 bg-gradient-to-b from-attention-50 to-transparent dark:from-attention-900/40'
       : wipInfo.at
-        ? 'border-t-amber-500 bg-gradient-to-b from-amber-50 to-transparent dark:from-amber-950/40'
+        ? 'border-t-momentum-600 bg-gradient-to-b from-momentum-50 to-transparent dark:from-momentum-900/40'
         : 'border-t-indigo-400 bg-gradient-to-b from-indigo-50 to-transparent dark:from-indigo-950/30'
     : 'border-t-slate-300 dark:border-t-slate-700';
 
   return (
     <section
-      className={`flex min-h-0 flex-col rounded-2xl border border-t-4 border-slate-200 bg-slate-50/60 dark:border-slate-800 dark:bg-slate-900/40 ${headerAccent}`}
+      className={`flex min-h-0 flex-col rounded-2xl border border-t-4 border-slate-200 bg-slate-50/60 shadow-glow-sm dark:border-slate-800 dark:bg-slate-900/40 ${headerAccent}`}
     >
       <header className="flex items-center justify-between gap-2 px-3 pb-2 pt-3">
         <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-200">{STATUS_LABELS[status]}</h2>
         <span
           className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ${
             wipInfo?.over
-              ? 'bg-red-100 text-red-700 ring-1 ring-red-300 dark:bg-red-950 dark:text-red-300 dark:ring-red-800'
+              ? 'bg-attention-100 text-attention-900 ring-1 ring-attention-400 dark:bg-attention-900 dark:text-attention-100 dark:ring-attention-600'
               : wipInfo?.at
-                ? 'bg-amber-100 text-amber-700 ring-1 ring-amber-300 dark:bg-amber-950 dark:text-amber-300 dark:ring-amber-800'
+                ? 'bg-momentum-100 text-momentum-900 ring-1 ring-momentum-200 dark:bg-momentum-900 dark:text-momentum-100 dark:ring-momentum-600'
                 : 'bg-slate-200/70 text-slate-600 dark:bg-slate-800 dark:text-slate-300'
           }`}
         >
@@ -161,7 +161,7 @@ function Column({
       </header>
 
       {wipInfo?.over && (
-        <p className="mx-3 mb-2 rounded-lg bg-red-100 px-2 py-1.5 text-[11px] font-semibold text-red-800 ring-1 ring-red-300 dark:bg-red-950 dark:text-red-300 dark:ring-red-800">
+        <p className="mx-3 mb-2 rounded-lg bg-attention-100 px-2 py-1.5 text-[11px] font-semibold text-attention-900 ring-1 ring-attention-400 dark:bg-attention-900 dark:text-attention-100 dark:ring-attention-600">
           WIP limit exceeded ({wipInfo.count}/{wipInfo.limit}) — finish work before pulling more.
         </p>
       )}

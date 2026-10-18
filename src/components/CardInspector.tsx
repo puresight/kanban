@@ -53,14 +53,14 @@ function formatCountdown(until: number): string {
 const PRIORITY_STYLES: Record<CardPriority, string> = {
   low: 'bg-slate-100 text-slate-600 ring-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:ring-slate-700',
   medium: 'bg-sky-100 text-sky-700 ring-sky-200 dark:bg-sky-950 dark:text-sky-300 dark:ring-sky-900',
-  high: 'bg-orange-100 text-orange-700 ring-orange-200 dark:bg-orange-950 dark:text-orange-300 dark:ring-orange-900',
-  urgent: 'bg-red-100 text-red-700 ring-red-200 dark:bg-red-950 dark:text-red-300 dark:ring-red-900',
+  high: 'bg-momentum-100 text-momentum-900 ring-momentum-200 dark:bg-momentum-900 dark:text-momentum-100 dark:ring-momentum-600',
+  urgent: 'bg-attention-100 text-attention-900 ring-attention-200 dark:bg-attention-900 dark:text-attention-100 dark:ring-attention-600',
 };
 
 const LANE_PILL_STYLES: Record<CardLane, string> = {
   core: 'bg-indigo-100 text-indigo-700 ring-indigo-300 dark:bg-indigo-950 dark:text-indigo-300 dark:ring-indigo-800',
-  sandbox: 'bg-emerald-100 text-emerald-700 ring-emerald-300 dark:bg-emerald-950 dark:text-emerald-300 dark:ring-emerald-800',
-  docs: 'bg-amber-100 text-amber-700 ring-amber-300 dark:bg-amber-950 dark:text-amber-300 dark:ring-amber-800',
+  sandbox: 'bg-momentum-100 text-momentum-900 ring-momentum-200 dark:bg-momentum-900 dark:text-momentum-100 dark:ring-momentum-600',
+  docs: 'bg-attention-100 text-attention-900 ring-attention-200 dark:bg-attention-900 dark:text-attention-100 dark:ring-attention-600',
 };
 
 export function CardInspector({ card, contacts, onClose }: CardInspectorProps) {
@@ -256,7 +256,7 @@ export function CardInspector({ card, contacts, onClose }: CardInspectorProps) {
       <button type="button" aria-label="Close inspector" onClick={onClose} className="absolute inset-0 bg-slate-950/50 backdrop-blur-sm" />
 
       {/* Full-screen sheet on mobile, right slide-over on desktop */}
-      <div className="absolute inset-x-0 bottom-0 top-14 flex flex-col overflow-hidden rounded-t-2xl bg-white shadow-2xl animate-[drawer-in_200ms_ease-out] dark:bg-slate-900 sm:inset-y-0 sm:left-auto sm:right-0 sm:w-[480px] sm:rounded-none sm:rounded-l-2xl">
+      <div className="absolute inset-x-0 bottom-0 top-14 flex flex-col overflow-hidden rounded-t-2xl bg-white shadow-glow-md animate-[drawer-in_200ms_ease-out] dark:bg-slate-900 sm:inset-y-0 sm:left-auto sm:right-0 sm:w-[480px] sm:rounded-none sm:rounded-l-2xl">
         {/* Header bar */}
         <header className="flex items-center gap-2 border-b border-slate-200 px-4 py-3 dark:border-slate-800">
           <button
@@ -276,7 +276,7 @@ export function CardInspector({ card, contacts, onClose }: CardInspectorProps) {
           >
             <span className="truncate">{cardStem(card.id)}</span>
             {copied ? (
-              <Check className="h-3.5 w-3.5 text-emerald-500" aria-hidden />
+              <Check className="h-3.5 w-3.5 text-momentum-600" aria-hidden />
             ) : (
               <Copy className="h-3.5 w-3.5 opacity-0 transition group-hover:opacity-100" aria-hidden />
             )}
@@ -325,7 +325,7 @@ export function CardInspector({ card, contacts, onClose }: CardInspectorProps) {
                 ))}
               </select>
               {statusError && (
-                <p className="mt-1.5 rounded-lg bg-red-100 px-2 py-1.5 text-[11px] font-semibold text-red-800 ring-1 ring-red-300 dark:bg-red-950 dark:text-red-300 dark:ring-red-800">
+                <p className="mt-1.5 rounded-lg bg-attention-100 px-2 py-1.5 text-[11px] font-semibold text-attention-900 ring-1 ring-attention-400 dark:bg-attention-900 dark:text-attention-100 dark:ring-attention-600">
                   {statusError}
                 </p>
               )}
@@ -376,14 +376,14 @@ export function CardInspector({ card, contacts, onClose }: CardInspectorProps) {
             </h3>
             {activeLease ? (
               <div className="mt-2">
-                <div className="flex items-center gap-2 rounded-lg bg-violet-50 px-3 py-2 ring-1 ring-violet-200 dark:bg-violet-950/60 dark:ring-violet-900">
+                <div className="flex items-center gap-2 rounded-lg bg-momentum-50 px-3 py-2 ring-1 ring-momentum-200 dark:bg-momentum-900/60 dark:ring-momentum-600">
                   <span className="relative flex h-2 w-2 shrink-0" aria-hidden>
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-violet-400 opacity-75" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-violet-500" />
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-momentum-400 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-momentum-600" />
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium text-violet-800 dark:text-violet-200">{activeLease.agent}</p>
-                    <p className="text-[11px] text-violet-600 dark:text-violet-300">{formatCountdown(activeLease.until)}</p>
+                    <p className="truncate text-sm font-medium text-momentum-900 dark:text-momentum-100">{activeLease.agent}</p>
+                    <p className="text-[11px] text-momentum-600 dark:text-momentum-200">{formatCountdown(activeLease.until)}</p>
                   </div>
                 </div>
                 <button
@@ -437,7 +437,7 @@ export function CardInspector({ card, contacts, onClose }: CardInspectorProps) {
               <button
                 type="button"
                 onClick={() => setLeasePromptOpen(true)}
-                className="mt-2 inline-flex h-9 items-center gap-1.5 rounded-lg bg-violet-600 px-3 text-xs font-medium text-white transition hover:bg-violet-500"
+                className="mt-2 inline-flex h-9 items-center gap-1.5 rounded-lg bg-momentum-600 px-3 text-xs font-medium text-white transition hover:bg-momentum-400"
               >
                 <Lock className="h-3.5 w-3.5" aria-hidden /> Take Lease
               </button>
@@ -451,16 +451,16 @@ export function CardInspector({ card, contacts, onClose }: CardInspectorProps) {
             </h3>
             {card.blocker ? (
               <div className="mt-2">
-                <div className="blocker-pulse rounded-lg bg-amber-100 px-3 py-2.5 ring-1 ring-amber-300 dark:bg-amber-950 dark:ring-amber-800">
-                  <p className="text-xs font-bold uppercase tracking-wide text-amber-900 dark:text-amber-200">
+                <div className="blocker-pulse rounded-lg bg-attention-100 px-3 py-2.5 ring-1 ring-attention-400 dark:bg-attention-900 dark:ring-attention-600">
+                  <p className="text-xs font-bold uppercase tracking-wide text-attention-900 dark:text-attention-100">
                     [BLOCKED by {card.blocker.by}]
                   </p>
-                  <p className="mt-0.5 text-sm font-medium leading-snug text-amber-900 dark:text-amber-100">{card.blocker.reason}</p>
+                  <p className="mt-0.5 text-sm font-medium leading-snug text-attention-900 dark:text-attention-100">{card.blocker.reason}</p>
                 </div>
                 <button
                   type="button"
                   onClick={() => void unblock()}
-                  className="mt-2 inline-flex h-9 items-center gap-1.5 rounded-lg bg-emerald-600 px-3 text-xs font-medium text-white transition hover:bg-emerald-500"
+                  className="mt-2 inline-flex h-9 items-center gap-1.5 rounded-lg bg-momentum-600 px-3 text-xs font-medium text-white transition hover:bg-momentum-400"
                 >
                   <Check className="h-3.5 w-3.5" aria-hidden /> Unblock
                 </button>
@@ -472,21 +472,21 @@ export function CardInspector({ card, contacts, onClose }: CardInspectorProps) {
                   onChange={(e) => setBlockerBy(e.target.value)}
                   placeholder="Blocked by (PR, dependency, card ID…)"
                   autoFocus
-                  className="h-9 w-full rounded-lg border border-slate-300 bg-white px-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
+                  className="h-9 w-full rounded-lg border border-slate-300 bg-white px-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-attention-600 focus:outline-none focus:ring-2 focus:ring-attention-600/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
                 />
                 <textarea
                   value={blockerReason}
                   onChange={(e) => setBlockerReason(e.target.value)}
                   rows={2}
                   placeholder="Why is this blocked?"
-                  className="w-full resize-none rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
+                  className="w-full resize-none rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-attention-600 focus:outline-none focus:ring-2 focus:ring-attention-600/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
                 />
                 <div className="flex gap-2">
                   <button
                     type="button"
                     onClick={() => void markBlocked()}
                     disabled={!blockerBy.trim() || !blockerReason.trim()}
-                    className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-amber-600 px-3 text-xs font-medium text-white transition hover:bg-amber-500 disabled:opacity-40"
+                    className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-attention-600 px-3 text-xs font-medium text-white transition hover:bg-attention-400 disabled:opacity-40"
                   >
                     <Ban className="h-3.5 w-3.5" aria-hidden /> Mark Blocked
                   </button>
@@ -503,7 +503,7 @@ export function CardInspector({ card, contacts, onClose }: CardInspectorProps) {
               <button
                 type="button"
                 onClick={() => setBlockerFormOpen(true)}
-                className="mt-2 inline-flex h-9 items-center gap-1.5 rounded-lg bg-amber-100 px-3 text-xs font-medium text-amber-800 ring-1 ring-amber-300 transition hover:bg-amber-200 dark:bg-amber-950 dark:text-amber-200 dark:ring-amber-800"
+                className="mt-2 inline-flex h-9 items-center gap-1.5 rounded-lg bg-attention-100 px-3 text-xs font-medium text-attention-900 ring-1 ring-attention-400 transition hover:bg-attention-200 dark:bg-attention-900 dark:text-attention-100 dark:ring-attention-600"
               >
                 <Ban className="h-3.5 w-3.5" aria-hidden /> Mark Blocked
               </button>
@@ -705,8 +705,8 @@ export function CardInspector({ card, contacts, onClose }: CardInspectorProps) {
 function DueChip({ dueAt }: { dueAt: number }) {
   const { text, tone } = formatDueLabel(dueAt);
   const styles = {
-    past: 'bg-red-100 text-red-700 ring-red-300 dark:bg-red-950 dark:text-red-300 dark:ring-red-800',
-    soon: 'bg-amber-100 text-amber-800 ring-amber-300 dark:bg-amber-950 dark:text-amber-300 dark:ring-amber-800',
+    past: 'bg-attention-100 text-attention-900 ring-attention-400 dark:bg-attention-900 dark:text-attention-100 dark:ring-attention-600',
+    soon: 'bg-momentum-100 text-momentum-900 ring-momentum-200 dark:bg-momentum-900 dark:text-momentum-100 dark:ring-momentum-600',
     future: 'bg-slate-100 text-slate-600 ring-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:ring-slate-700',
   }[tone];
   return (

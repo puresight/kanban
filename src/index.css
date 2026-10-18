@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --anchor: #4f46e5;
+    --glow-sm: 0 1px 3px -1px rgb(79 70 229 / 0.18), 0 0 8px -2px rgb(79 70 229 / 0.10);
+    --glow-md: 0 4px 16px -4px rgb(79 70 229 / 0.22), 0 0 12px -3px rgb(79 70 229 / 0.12);
+    --glow-ring: rgb(79 70 229 / 0.35);
+  }
   html {
     -webkit-tap-highlight-color: transparent;
   }

@@ -5,14 +5,14 @@ import { cardStem } from '@/db/ulid';
 const PRIORITY_STYLES: Record<Card['priority'], string> = {
   low: 'bg-slate-100 text-slate-600 ring-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:ring-slate-700',
   medium: 'bg-sky-100 text-sky-700 ring-sky-200 dark:bg-sky-950 dark:text-sky-300 dark:ring-sky-900',
-  high: 'bg-orange-100 text-orange-700 ring-orange-200 dark:bg-orange-950 dark:text-orange-300 dark:ring-orange-900',
-  urgent: 'bg-red-100 text-red-700 ring-red-200 dark:bg-red-950 dark:text-red-300 dark:ring-red-900',
+  high: 'bg-momentum-100 text-momentum-900 ring-momentum-200 dark:bg-momentum-900 dark:text-momentum-100 dark:ring-momentum-600',
+  urgent: 'bg-attention-100 text-attention-900 ring-attention-200 dark:bg-attention-900 dark:text-attention-100 dark:ring-attention-600',
 };
 
 const LANE_STYLES: Record<CardLane, string> = {
   core: 'bg-indigo-100 text-indigo-700 ring-indigo-200 dark:bg-indigo-950 dark:text-indigo-300 dark:ring-indigo-900',
-  sandbox: 'bg-emerald-100 text-emerald-700 ring-emerald-200 dark:bg-emerald-950 dark:text-emerald-300 dark:ring-emerald-900',
-  docs: 'bg-amber-100 text-amber-700 ring-amber-200 dark:bg-amber-950 dark:text-amber-300 dark:ring-amber-900',
+  sandbox: 'bg-momentum-100 text-momentum-900 ring-momentum-200 dark:bg-momentum-900 dark:text-momentum-100 dark:ring-momentum-600',
+  docs: 'bg-attention-100 text-attention-900 ring-attention-200 dark:bg-attention-900 dark:text-attention-100 dark:ring-attention-600',
 };
 
 interface CardItemProps {
@@ -24,7 +24,7 @@ interface CardItemProps {
 
 export function CardItem({ card, onEdit, onQuickMove, leaseRemaining }: CardItemProps) {
   return (
-    <article className="card-pop group rounded-xl border border-slate-200 bg-white p-3 shadow-sm transition hover:border-indigo-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-indigo-700">
+    <article className="card-pop group rounded-xl border border-slate-200 bg-white p-3 shadow-glow-sm transition hover:border-indigo-300 hover:shadow-glow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-indigo-700">
       <button type="button" onClick={() => onEdit(card)} className="block w-full text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 rounded-xl">
         <div className="flex items-center justify-between gap-2">
           <span className="font-mono text-[11px] text-slate-400 dark:text-slate-500">{cardStem(card.id)}</span>
@@ -45,10 +45,10 @@ export function CardItem({ card, onEdit, onQuickMove, leaseRemaining }: CardItem
         </div>
 
         {card.lease && (
-          <div className="mt-2 flex items-center gap-1.5 rounded-lg bg-violet-50 px-2 py-1 text-[11px] font-medium text-violet-700 ring-1 ring-violet-200 dark:bg-violet-950/60 dark:text-violet-300 dark:ring-violet-900">
+          <div className="mt-2 flex items-center gap-1.5 rounded-lg bg-momentum-50 px-2 py-1 text-[11px] font-medium text-momentum-900 ring-1 ring-momentum-200 dark:bg-momentum-900/60 dark:text-momentum-100 dark:ring-momentum-600">
             <span className="relative flex h-2 w-2" aria-hidden>
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-violet-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-violet-500" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-momentum-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-momentum-600" />
             </span>
             Leased: {card.lease.agent}
             {leaseRemaining ? ` (expires in ${leaseRemaining})` : ''}
@@ -56,7 +56,7 @@ export function CardItem({ card, onEdit, onQuickMove, leaseRemaining }: CardItem
         )}
 
         {card.blocker && (
-          <div className="blocker-pulse mt-2 rounded-lg bg-amber-100 px-2 py-1.5 text-[11px] font-semibold leading-snug text-amber-900 ring-1 ring-amber-300 dark:bg-amber-950 dark:text-amber-200 dark:ring-amber-800">
+          <div className="blocker-pulse mt-2 rounded-lg bg-attention-100 px-2 py-1.5 text-[11px] font-semibold leading-snug text-attention-900 ring-1 ring-attention-400 dark:bg-attention-900 dark:text-attention-100 dark:ring-attention-600">
             [BLOCKED by {card.blocker.by}]: {card.blocker.reason}
           </div>
         )}

@@ -133,7 +133,7 @@ export function Header({
                   <MoreVertical className="h-4 w-4" aria-hidden />
                 </button>
                 {menuOpen && (
-                  <div className="absolute right-0 top-12 z-40 w-56 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl dark:border-slate-700 dark:bg-slate-800">
+                  <div className="absolute right-0 top-12 z-40 w-56 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-glow-md dark:border-slate-700 dark:bg-slate-800">
                     <button
                       type="button"
                       onClick={() => {
