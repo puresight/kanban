@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Download, FolderUp, Monitor, Moon, MoreVertical, Plus, Sun } from 'lucide-react';
+import { Download as DownloadIcon, FolderUp, Monitor, Moon, MoreVertical, Plus, Smartphone, Sun } from 'lucide-react';
 import type { ThemeMode } from '@/hooks/useTheme';
 import type { CardLane } from '@/db/types';
 
@@ -34,6 +34,7 @@ interface HeaderProps {
   onNewCard: () => void;
   onExportAll: () => void;
   onImportFiles: (files: FileList) => void;
+  onInstall?: () => void;
   themeMode: ThemeMode;
   onThemeModeChange: (mode: ThemeMode) => void;
 }
@@ -48,6 +49,7 @@ export function Header({
   onNewCard,
   onExportAll,
   onImportFiles,
+  onInstall,
   themeMode,
   onThemeModeChange,
 }: HeaderProps) {
@@ -140,7 +142,7 @@ export function Header({
                       }}
                       className="flex w-full items-center gap-2 px-4 py-3 text-sm text-slate-700 transition hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-700"
                     >
-                      <Download className="h-4 w-4" aria-hidden /> Export All Cards (.zip)
+                      <DownloadIcon className="h-4 w-4" aria-hidden /> Export All Cards (.zip)
                     </button>
                     <button
                       type="button"
@@ -152,6 +154,18 @@ export function Header({
                     >
                       <FolderUp className="h-4 w-4" aria-hidden /> Import Cards (.md)
                     </button>
+                    {onInstall && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setMenuOpen(false);
+                          onInstall();
+                        }}
+                        className="flex w-full items-center gap-2 px-4 py-3 text-sm text-slate-700 transition hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-700"
+                      >
+                        <Smartphone className="h-4 w-4" aria-hidden /> Install App
+                      </button>
+                    )}
                   </div>
                 )}
               </div>

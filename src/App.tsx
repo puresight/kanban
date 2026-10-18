@@ -11,9 +11,13 @@ import { cardToMarkdown, downloadFile, markdownToCard } from '@/lib/cardFile';
 import { getCurrentAgent, getKnownContacts, setCurrentAgent } from '@/lib/agent';
 import type { Contact } from '@/lib/contacts';
 import { useTheme } from '@/hooks/useTheme';
+import { useInstallPrompt } from '@/hooks/useInstallPrompt';
+import { Download, X } from 'lucide-react';
 
 export default function App() {
   const { mode: themeMode, setMode: setThemeMode } = useTheme();
+  const { canInstall, installed, promptInstall } = useInstallPrompt();
+  const [installBannerDismissed, setInstallBannerDismissed] = useState(false);
   const [ready, setReady] = useState(false);
   const [laneFilter, setLaneFilter] = useState<CardLane | 'all'>('all');
   const [quickFilter, setQuickFilter] = useState<QuickFilter>('all');
@@ -147,6 +151,7 @@ export default function App() {
         onImportFiles={(files) => void importFiles(files)}
         themeMode={themeMode}
         onThemeModeChange={setThemeMode}
+        onInstall={canInstall ? () => void promptInstall() : undefined}
       />
 
       <main className="mx-auto w-full max-w-7xl">
@@ -171,6 +176,33 @@ export default function App() {
           />
         )}
       </main>
+
+      {canInstall && !installed && !installBannerDismissed && (
+        <div className="install-pop fixed inset-x-3 bottom-3 z-40 mx-auto flex max-w-md items-center gap-3 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-xl backdrop-blur dark:border-slate-700 dark:bg-slate-800/95 sm:inset-x-auto sm:right-6">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-600 text-white">
+            <Download className="h-5 w-5" aria-hidden />
+          </span>
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">Install Task Board</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">Add to your home screen for a full-screen, offline app.</p>
+          </div>
+          <button
+            type="button"
+            onClick={() => void promptInstall()}
+            className="h-10 shrink-0 rounded-xl bg-indigo-600 px-3.5 text-sm font-medium text-white transition hover:bg-indigo-500"
+          >
+            Install
+          </button>
+          <button
+            type="button"
+            onClick={() => setInstallBannerDismissed(true)}
+            aria-label="Dismiss install prompt"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-700"
+          >
+            <X className="h-4 w-4" aria-hidden />
+          </button>
+        </div>
+      )}
 
       {inspectCardId && inspectCard && (
         <CardInspector card={inspectCard} contacts={contacts} onClose={() => setInspectCardId(null)} />
