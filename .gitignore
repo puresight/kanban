@@ -21,3 +21,8 @@ dist-ssr
 *.sln
 *.sw?
 .env
+node_modules/
+dist/
+.antigravity/cache/
+.antigravity/artifacts/
+.env.local
